@@ -1,5 +1,5 @@
 body{
-    font-family: Helvetica, Roboto;
+    font-family: Helvetica, Roboto, Arial, sans-serif;
     margin: 0;
 }
 
@@ -27,6 +27,13 @@ body{
     flex: 0 1 100%;
     min-width: 0;
     display: block;
+    padding: 10px;
+    color: #313131;
+}
+
+#main-content-wrapper h2{
+    font-size: 110px;
+    margin: 0 0 50px 0;
 }
 
 a{

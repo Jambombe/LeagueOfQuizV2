@@ -10,7 +10,7 @@
 
     {#<!-- foundation-rtl.min.css: Compressed CSS with right-to-left reading direction -->#}
     {#<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.5.1/dist/css/foundation-rtl.min.css" integrity="sha256-XlxeWxDsQfPdu4qiEAxQAng3/qnJhvZOZN/gZn0p71A= sha384-S/sFafRa3RAsKpyPwVCUZO8sjM+Sxh4qrVEC/XA9X0LXu7PduBaHpp3oWUyUq0qS sha512-T65eRA7TK5abF14H5Ovs6ov3lRSJkMEY7aI4B6nEtBA+kbtdhXwC2KO46kS4f68ysRXW5+Zu66054x369DRvYw==" crossorigin="anonymous">#}
-
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <link rel="stylesheet" href="../resources/styles/global.css">
 
     <meta charset="UTF-8">
@@ -26,7 +26,9 @@
     <div id="main-wrapper">
         {% embed "menu.html.twig" %} {% endembed %}
 
-        {% block body %}{% endblock %}
+        <div id="main-content-wrapper">
+            {% block body %}{% endblock %}
+        </div>
     </div>
     {% block javascripts %}{% endblock %}
 </body>
