@@ -16,8 +16,8 @@ class PlayController extends Controller
     public function PlayAction()
     {
         $jeuRepo = new JeuRepository();
-        var_dump($jeuRepo->getGames());
-        return $this->render("play.html.twig", []);
+        $games = $jeuRepo->getGamesTmp();
+        return $this->render("play.html.twig", ['games' => $games]);
     }
 
 

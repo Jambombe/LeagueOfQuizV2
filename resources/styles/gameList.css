@@ -1,0 +1,104 @@
+div#games-list {
+    width: 100%;
+}
+
+div.game-card {
+    width: 30%;
+    display: inline-block;
+    border: 1px solid #222222;
+    margin: 10px 3px;
+    /*padding: 5px;*/
+    border-radius: 5px;
+}
+
+div.game-card:hover {
+    box-shadow: 0 0 15px #313131;
+    transition: all .3s;
+}
+
+div.game-card-img{
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+    z-index: 0;
+}
+
+div.game-card img{
+    width: auto;
+    height: 100%;
+    min-width: 100%;
+    min-height: 100%;
+    border-radius: 5px 5px 0 0;
+    opacity: 1;
+}
+
+div.game-card-img:hover img{
+    opacity: 0.3;
+    transition: all 0.3s;
+}
+
+div.game-card-img-overlay {
+    width: 100%;
+    height: 100%;
+    transition: .3s ease;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+div.game-card-img-overlay:hover {
+    opacity: 1;
+    z-index: 900;
+}
+
+div.game-card h3 {
+    text-align: center;
+    font-size: 1.5em;
+}
+
+
+div.game-card-img-overlay a{
+    display: block;
+    padding: 10px 20px;
+    margin: 15px auto;
+    border: 1.5px solid;
+    border-radius: .28571429rem;
+    background-color: rgba(255,255,255,0.8);
+    width: 20%;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+div.game-card-img-overlay a.easy{
+    border-color: #21ba45;
+    color: #21ba45;
+}
+div.game-card-img-overlay a.medium{
+    border-color: #f2711c;
+    color: #f2711c;
+}
+div.game-card-img-overlay a.hard{
+    border-color: #db2828;
+    color: #db2828;
+}
+
+div.game-card-img-overlay a.easy:hover{
+    /*background-color: #21ba45;*/
+    background-color: rgba(33,186,69,0.8);
+    color: #fff;
+}
+div.game-card-img-overlay a.medium:hover{
+    /*background-color: #f2711c;*/
+    background-color: rgba(242,113,28,0.8);
+    color: #fff;
+}
+div.game-card-img-overlay a.hard:hover{
+    /*background-color: #db2828;*/
+    background-color: rgba(219,40,40,0.8);
+    color: #fff;
+}
