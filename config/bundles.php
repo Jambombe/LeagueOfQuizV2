@@ -14,4 +14,6 @@ return [
     Symfony\Bundle\DebugBundle\DebugBundle::class => ['dev' => true, 'test' => true],
     Symfony\Bundle\MakerBundle\MakerBundle::class => ['dev' => true],
     Symfony\Bundle\WebServerBundle\WebServerBundle::class => ['dev' => true],
+    Sensio\Bundle\DistributionBundle\SensioDistributionBundle::class => ['all' => true],
+    Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle::class => ['all' => true],
 ];
