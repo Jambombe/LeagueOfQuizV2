@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Jouer{% endblock %}
+
+{% block body %}
+
+    <h2>jouer</h2>
+    <div id="games-list">
+        {# Afficher les jeux venant de la bd #}
+        {% for game in games %}
+
+            <div class="game-card">
+                <div class="game-card-img">
+                    <img src="{{ game.image }}">
+                    <div class="game-card-img-overlay">
+                        <a href="{{ path('play') }}/{{ game.name }}/facile" class="easy">Facile</a>
+                        <a href="{{ path('play') }}/{{ game.name }}/moyen" class="medium">Moyen</a>
+                        <a href="{{ path('play') }}/{{ game.name }}/difficile" class="hard">Difficile</a>
+                    </div>
+                </div>
+                {#<hr>#}
+                <h3>{{ game.name }}</h3>
+            </div>
+
+        {% endfor %}
+    </div>
+
+{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('resources/css/gameList.css') }}">
+{% endblock %}

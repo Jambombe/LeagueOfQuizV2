@@ -1,13 +1,17 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}
+    Règles
+{% endblock %}
+
 {% block body %}
 
     <h2>règles</h2>
     <div>
-        Objectif : Répondre correctement et le plus rapidement possible aux 10 questions sélectionnées
+        <strong>Objectif :</strong> Répondre correctement et le plus rapidement possible aux 10 questions sélectionnées
         <ul>
             <li>10 questions aléatoires en fonction du jeu et de la difficulté choisie</li>
-            <li>Chaque mauvaise réponse ou question sans réponse entraîne 15 secondes de pénalité</li>
+            <li>Chaque mauvaise réponse ou question sans réponse entraîne 15 secondes de pénalités</li>
         </ul>
     </div>
 

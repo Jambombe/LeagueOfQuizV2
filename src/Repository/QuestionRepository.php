@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Question;
+use App\Entity\Reponse;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
@@ -17,6 +18,29 @@ class QuestionRepository extends ServiceEntityRepository
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, Question::class);
+    }
+
+    public function getQuestionAndAnswers($id)
+    {
+        $question = $this->find($id);
+        $reponseRepo = $this->getEntityManager()->getRepository(Reponse::class);
+        $reponses = $reponseRepo->findBy([
+            'parent_question_id' => $id,
+        ]);
+
+        $question->setReponses($reponses);
+
+        return $question;
+    }
+
+    public function loadAnswers(Question $question)
+    {
+        $reponseRepo = $this->getEntityManager()->getRepository(Reponse::class);
+        $reponses = $reponseRepo->findBy([
+            'parent_question_id' => $question->getId(),
+        ]);
+
+        $question->setReponses($reponses);
     }
 
     // /**

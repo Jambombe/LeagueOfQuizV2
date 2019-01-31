@@ -9,12 +9,18 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Question
 {
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      */
     private $id;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $parentGameId;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -25,6 +31,11 @@ class Question
      * @ORM\Column(type="string", length=1023)
      */
     private $urlImage;
+
+    /**
+     * @ORM\Column(type="string", length=10)
+     */
+    private $difficulty;
 
     private $reponses;
 
@@ -53,6 +64,18 @@ class Question
     public function setUrlImage(string $urlImage): self
     {
         $this->urlImage = $urlImage;
+
+        return $this;
+    }
+
+    public function getReponses()
+    {
+        return $this->reponses;
+    }
+
+    public function setReponses($r): self
+    {
+        $this->reponses = $r;
 
         return $this;
     }

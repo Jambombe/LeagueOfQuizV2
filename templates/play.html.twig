@@ -1,32 +1,15 @@
-{% extends 'base.html.twig' %}
+{% extends "base.html.twig" %}
 
-{% block title %}Jouer{% endblock %}
+{% block title %}
+    {{ displayName }} - {{ difficulty | capitalize }}
+{% endblock %}
 
 {% block body %}
 
-    <h2>jouer</h2>
-    <div id="games-list">
-        {# Afficher les jeux venant de la bd #}
-        {% for game in games %}
+    <h2>{{ displayName }}</h2>
 
-            <div class="game-card">
-                <div class="game-card-img">
-                    <img src="{{ game.image }}">
-                    <div class="game-card-img-overlay">
-                        <a href="" class="easy">Facile</a>
-                        <a href="" class="medium">Moyen</a>
-                        <a href="" class="hard">Difficile</a>
-                    </div>
-                </div>
-                {#<hr>#}
-                <h3>{{ game.name }}</h3>
-            </div>
+    {% for q in questions %}
+        {{ dump(q) }}
+    {% endfor %}
 
-        {% endfor %}
-    </div>
-
-{% endblock %}
-
-{% block stylesheets %}
-    <link rel="stylesheet" href="../resources/styles/gameList.css">
 {% endblock %}

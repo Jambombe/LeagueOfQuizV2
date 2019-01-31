@@ -2,7 +2,7 @@
 
     <ul id="menu-list">
         <li class="menu-item">
-            <a href="http://localhost/leagueofquizv2/public/">
+            <a href="{{ path('home') }}">
                 <span class="label">
                     <span class="icon">
                         {# Image #}
@@ -13,7 +13,7 @@
             </a>
         </li>
         <li class="menu-item">
-            <a href="http://localhost/leagueofquizv2/public/jouer">
+            <a href="{{ path('play') }}">
                 <span class="label">
                     <span class="icon">
                         {# Image #}
@@ -24,7 +24,7 @@
             </a>
         </li>
         <li class="menu-item">
-            <a href="http://localhost/leagueofquizv2/public/regles">
+            <a href="{{ path('rules') }}">
                 <span class="label">
                     <span class="icon">
                         {# Image #}
@@ -52,5 +52,5 @@
 </nav>
 
 {% block stylesheets %}
-    <link rel="stylesheet" href="../resources/styles/menu.css">
+    <link rel="stylesheet" href="{{ asset('resources/css/menu.css') }}">
 {% endblock %}

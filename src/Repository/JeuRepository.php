@@ -3,32 +3,48 @@
 namespace App\Repository;
 
 use App\Entity\Jeu;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Symfony\Bridge\Doctrine\RegistryInterface;
 
-class JeuRepository
+/**
+ * @method Jeu|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Jeu|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Jeu[]    findAll()
+ * @method Jeu[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ */
+class JeuRepository extends ServiceEntityRepository
 {
-    private $objConnect;
-
-    public function __construct()
+    public function __construct(RegistryInterface $registry)
     {
-        $connexion = new ConnexionDb();
-        $this->objConnect = $connexion->getDb();
+        parent::__construct($registry, Jeu::class);
     }
 
-    public function getGames(){
-
-        $query = "SELECT * FROM games";
-        $res = $this->objConnect->query($query);
-        $jeux = $res->fetchAll(/*\PDO::FETCH_CLASS, 'Jeu'*/);
-
-        return $jeux;
+    // /**
+    //  * @return Jeu[] Returns an array of Jeu objects
+    //  */
+    /*
+    public function findByExampleField($value)
+    {
+        return $this->createQueryBuilder('j')
+            ->andWhere('j.exampleField = :val')
+            ->setParameter('val', $value)
+            ->orderBy('j.id', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
     }
+    */
 
-    public function getGamesTmp() {
-        return $jeux = [
-            new Jeu(1, 'League of Legends', 'https://www.journaldugeek.com/content/uploads/2018/11/lol.jpg'),
-            new Jeu(2, 'Rainbow Six : Siege', 'https://www.francetvinfo.fr/image/75ixjwddg-cb66/1200/450/15537079.jpg'),
-            new Jeu(3, 'Zelda : Breath of the Wild', 'http://lvdneng.rosselcdn.net/sites/default/files/dpistyles_v2/ena_16_9_extra_big/2017/03/20/node_135469/26978859/public/2017/03/20/B9711469332Z.1_20170320163347_000%2BGSQ8N0IE2.1-0.jpg?itok=sqSbfbjZ'),
-            new Jeu(4, 'Mario Odyssey', 'https://cdn03.nintendo-europe.com/media/images/06_screenshots/games_5/nintendo_switch_6/nswitch_supermarioodyssey/NSwitch_SuperMarioOdyssey_10.jpg'),
-        ];
+    /*
+    public function findOneBySomeField($value): ?Jeu
+    {
+        return $this->createQueryBuilder('j')
+            ->andWhere('j.exampleField = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
     }
+    */
 }

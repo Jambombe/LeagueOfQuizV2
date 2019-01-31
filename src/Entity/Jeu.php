@@ -2,28 +2,73 @@
 
 namespace App\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
 
-class Jeu {
+/**
+ * @ORM\Entity(repositoryClass="App\Repository\JeuRepository")
+ */
+class Jeu
+{
+    /**
+     * @ORM\Id()
+     * @ORM\GeneratedValue()
+     * @ORM\Column(type="integer")
+     */
     private $id;
-    private $name;
-    private $image;
-    private $urlToPlay;
 
-    public function __construct($id, $name, $image/*, $urlToPlay*/)
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $name;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $displayName;
+
+    /**
+     * @ORM\Column(type="string", length=1023)
+     */
+    private $image;
+
+    public function getId(): ?int
     {
-        $this->setId($id);
-        $this->setName($name);
-        $this->setImage($image);
-//        $this->setUrlToPlay($urlToPlay);
+        return $this->id;
     }
 
-    public function getName() { return $this->name; }
-    public function setName($name) { $this->name = $name; }
-    public function getId() { return $this->id; }
-    public function setId($id) { $this->id = $id; }
-    public function getImage() { return $this->image; }
-    public function setImage($image) { $this->image = $image; }
-    public function getUrlToPlay() { return $this->urlToPlay; }
-    public function setUrlToPlay($urlToPlay) { $this->urlToPlay = $urlToPlay; }
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
 
+    public function setName(string $name): self
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function getDisplayName(): ?string
+    {
+        return $this->displayName;
+    }
+
+    public function setDisplayName(string $displayName): self
+    {
+        $this->displayName = $displayName;
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(string $image): self
+    {
+        $this->image = $image;
+
+        return $this;
+    }
 }
