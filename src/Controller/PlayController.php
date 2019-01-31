@@ -61,4 +61,11 @@ class PlayController extends Controller
         return $tenQuestions;
     }
 
+    public function getQuestionsV2($jeu, $difficulty)
+    {
+        $questionRepo = $this->getDoctrine()->getRepository(Question::class);
+        return $questionRepo->tenQuestions($jeu->getId(), $difficulty);
+
+    }
+
 }

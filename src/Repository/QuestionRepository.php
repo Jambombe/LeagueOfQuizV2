@@ -33,12 +33,18 @@ class QuestionRepository extends ServiceEntityRepository
         return $question;
     }
 
+    /**
+     * Charge les Réponses correspondants à la Question donnée
+     * @param Question $question
+     */
     public function loadAnswers(Question $question)
     {
         $reponseRepo = $this->getEntityManager()->getRepository(Reponse::class);
-        $reponses = $reponseRepo->findBy([
-            'parent_question_id' => $question->getId(),
-        ]);
+        $reponses = $reponseRepo->findBy(
+            [
+                'parent_question_id' => $question->getId(),
+            ]
+        );
 
         $question->setReponses($reponses);
     }

@@ -68,6 +68,18 @@ class Question
         return $this;
     }
 
+    public function getDifficulty(): ?string
+    {
+        return $this->difficulty;
+    }
+
+    public function setDifficulty(string $difficulty): self
+    {
+        $this->difficulty = $difficulty;
+
+        return $this;
+    }
+
     public function getReponses()
     {
         return $this->reponses;
