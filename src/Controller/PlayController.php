@@ -3,8 +3,11 @@
 namespace App\Controller;
 
 
+use App\Constants;
 use App\Entity\Jeu;
 use App\Entity\Question;
+use App\Form\QuestionType;
+use App\Repository\JeuRepository;
 use App\Repository\QuestionRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
@@ -19,15 +22,21 @@ class PlayController extends Controller
 
     /**
      * @Route("/{gameName}/{difficulty}")
+     * @param $gameName
+     * @param $difficulty
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function initGame($gameName, $difficulty)
     {
+        /** @var JeuRepository $jeuRepo */
         $jeuRepo = $this->getDoctrine()->getRepository(Jeu::class);
-        $jeu = $jeuRepo->findBy(['name'=>$gameName])[0];
 
-        $questions = $this->getQuestions($jeu, $difficulty);
+        /** @var Jeu $jeu */
+        $jeu = $jeuRepo->findByName($gameName)[0];
 
-        return $this->render('play.html.twig', [
+        $questions = $this->getQuestions($jeu, $difficulty, Constants::NB_QUESTIONS);
+
+        return $this->render('play/play.html.twig', [
                 'displayName'=>$jeu->getDisplayName(),
                 'difficulty'=>$difficulty,
                 'questions'=>$questions,
@@ -36,36 +45,34 @@ class PlayController extends Controller
     }
 
     /**
-     * Charge 10 question en fonctions du jeu et de la difficulté
-     * @param $jeu
-     * @param $difficulty
+     * Charge $nbQuestions questions en fonction du jeu et de la difficulté
+     * @param $jeu Jeu
+     * @param $difficulty string
+     * @param $nbQuestions integer
      * @return object[]
      */
-    public function getQuestions($jeu, $difficulty)
+    public function getQuestions($jeu, $difficulty, $nbQuestions)
     {
+        /**@var QuestionRepository $questionRepo **/
         $questionRepo = $this->getDoctrine()->getRepository(Question::class);
-        $allMatchingQuestions = $questionRepo
-            ->findBy([
-                'parentGameId'=>$jeu->getId(),
-                'difficulty'=>$difficulty,
-            ]
-            );
 
-        shuffle($allMatchingQuestions);
-        $tenQuestions = array_slice($allMatchingQuestions, 0, 2);
+        // Tout les ids des questions correspondantes au $jeu et à la $difficulty
+        $matchingIds = $questionRepo->getMatchingIds($jeu, $difficulty);
 
-        foreach ($tenQuestions as $question)
+        // On prend aléatoirement Constants:NB_QUESTIONS ids
+        shuffle($matchingIds);
+        $questionIds = array_slice($matchingIds, 0, $nbQuestions);
+
+        // On charge les questions correspondantes aux ids sélectionnés
+        $questions = [];
+        foreach ($questionIds as $questionId)
         {
-            $questionRepo->loadAnswers($question);
+            array_push($questions,$questionRepo->find($questionId));
         }
-        return $tenQuestions;
-    }
 
-    public function getQuestionsV2($jeu, $difficulty)
-    {
-        $questionRepo = $this->getDoctrine()->getRepository(Question::class);
-        return $questionRepo->tenQuestions($jeu->getId(), $difficulty);
+        shuffle($questions);
 
+        return $questions;
     }
 
 }

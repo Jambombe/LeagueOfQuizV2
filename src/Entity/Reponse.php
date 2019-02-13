@@ -17,9 +17,11 @@ class Reponse
     private $id;
 
     /**
-     * @ORM\Column(type="integer")
+     * @var integer
+     * @ORM\ManyToOne(targetEntity="Question", inversedBy="reponses", cascade={"persist"})
+     * @ORM\JoinColumn(onDelete="CASCADE")
      */
-    private $parent_question_id;
+    private $parentQuestion;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -36,14 +38,14 @@ class Reponse
         return $this->id;
     }
 
-    public function getParentQuestionId(): ?int
+    public function getParentQuestion(): ?int
     {
-        return $this->parent_question_id;
+        return $this->parentQuestion;
     }
 
-    public function setParentQuestionId(int $parent_question_id): self
+    public function setParentQuestion(int $parentQuestion): self
     {
-        $this->parent_question_id = $parent_question_id;
+        $this->parentQuestion = $parentQuestion;
 
         return $this;
     }

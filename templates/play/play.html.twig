@@ -1,0 +1,36 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+    {{ displayName }} - {{ difficulty | capitalize }}
+{% endblock %}
+
+{% block body %}
+
+    <h2>{{ displayName }}</h2>
+
+    <div class="question-form">
+        <div class="questions-list">
+            {% for q in questions %}
+                {% include 'play/includes/question.html.twig' with {'q': q} %}
+                <hr class="question-separator">
+            {% endfor %}
+        </div>
+        <input type="submit" value="Terminer">
+    </div>
+
+    {#<div class="loading-screen" onload="startingScreenInit()">#}
+        {#Oui#}
+    {#</div>#}
+
+{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('resources/css/questions-list.css') }}">
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('resources/js/starting-screen.js') }}"></script>
+{% endblock %}
+
+
+

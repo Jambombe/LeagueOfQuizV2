@@ -1,6 +1,12 @@
+html{
+    height: 100%;
+}
+
 body{
     font-family: Helvetica, Roboto, Arial, sans-serif;
     margin: 0;
+    height: 100%;
+    overflow-y: hidden;
 }
 
 #header{
@@ -20,7 +26,7 @@ body{
 #main-wrapper{
     display: flex;
     flex-direction: row;
-    min-height: 100%;
+    height: 100%;
 }
 
 #main-content-wrapper{
@@ -29,11 +35,13 @@ body{
     display: block;
     padding: 10px;
     color: #313131;
+    height: 100%;
 }
 
 #main-content-wrapper h2{
     font-size: 90px;
-    margin: 0 0 50px 0;
+    margin: 0;
+    padding: 0 0 50px 0;
 }
 
 a{

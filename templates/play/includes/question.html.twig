@@ -1,0 +1,11 @@
+<div class="question">
+    <div class="img"><img src="{{ q.urlImage }}"></div>
+    <h3>{{ q.ennonce }}</h3>
+    <div class="reponses">
+        {% for r in q.reponses | shuffle %}
+            <input type="radio" name="q{{ q.id }}" value="{{ r.isCorrect }}" id="q{{ q.id }}r{{ r.id }}">
+            <label class="reponse-btn" for="q{{ q.id }}r{{ r.id }}">{{ r.ennonce }}</label>
+            {#{% if  %}#}
+        {% endfor %}
+    </div>
+</div>

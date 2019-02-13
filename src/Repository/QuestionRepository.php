@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\Jeu;
 use App\Entity\Question;
 use App\Entity\Reponse;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
@@ -34,19 +35,24 @@ class QuestionRepository extends ServiceEntityRepository
     }
 
     /**
-     * Charge les Réponses correspondants à la Question donnée
-     * @param Question $question
+     * @param $jeu Jeu
+     * @param $difficulty string
+     * @param $nb integer
+     * @return array
      */
-    public function loadAnswers(Question $question)
+    public function getMatchingIds($jeu, $difficulty)
     {
-        $reponseRepo = $this->getEntityManager()->getRepository(Reponse::class);
-        $reponses = $reponseRepo->findBy(
-            [
-                'parent_question_id' => $question->getId(),
-            ]
-        );
+        $ids = $this
+            ->getEntityManager()->createQuery("SELECT DISTINCT q.id FROM App:Question q WHERE q.parentGameId = :parentGameId AND q.difficulty = :difficulty")
+            ->setParameters(['parentGameId'=>$jeu->getId(), 'difficulty'=>$difficulty])
+            ->getResult()
+        ;
+        $matchingIds = [];
+        foreach ($ids as $id){
+            array_push($matchingIds, $id['id']);
+        }
 
-        $question->setReponses($reponses);
+        return $matchingIds;
     }
 
     // /**

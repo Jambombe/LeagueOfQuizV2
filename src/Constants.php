@@ -25,6 +25,7 @@ class Difficulty{
 
 }
 
-class constants{
+class Constants{
 
+    const NB_QUESTIONS = 4;
 }

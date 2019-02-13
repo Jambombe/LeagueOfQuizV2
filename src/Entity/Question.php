@@ -37,7 +37,16 @@ class Question
      */
     private $difficulty;
 
+    /**
+     * @var \Doctrine\Common\Collections\ArrayCollection
+     * @ORM\OneToMany(targetEntity="Reponse", mappedBy="parentQuestion", cascade={"persist", "remove"})
+     */
     private $reponses;
+
+    public function __construct()
+    {
+        $this->loadAnswers();
+    }
 
     public function getId(): ?int
     {
@@ -90,5 +99,21 @@ class Question
         $this->reponses = $r;
 
         return $this;
+    }
+
+    public function getParentGameId()
+    {
+        return $this->parentGameId;
+    }
+
+    public function setParentGameId($parentGameId)
+    {
+        $this->parentGameId = $parentGameId;
+
+        return $this;
+    }
+
+    private function loadAnswers()
+    {
     }
 }
