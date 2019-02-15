@@ -15,7 +15,7 @@ class RulesController extends Controller
      */
     public function RulesAction()
     {
-        return $this->render("rules.html.twig", []);
+        return $this->render("pages/rules.html.twig", []);
     }
 
 

@@ -17,7 +17,7 @@ class JeuController extends Controller
     {
         $jeuRepo = $this->getDoctrine()->getRepository(Jeu::class);
         $games = $jeuRepo->findAll();
-        return $this->render("gameList.html.twig", ['games' => $games]);
+        return $this->render("pages/gameList.html.twig", ['games' => $games]);
     }
 
 

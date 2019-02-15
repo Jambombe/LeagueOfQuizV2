@@ -13,7 +13,7 @@ class IndexController extends Controller
      */
     public function HomeAction()
     {
-        return $this->render("home.html.twig", [], null);
+        return $this->render("pages/home.html.twig", [], null);
     }
 
 
