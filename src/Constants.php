@@ -2,6 +2,11 @@
 
 namespace App;
 
+class Constants{
+
+    const NB_QUESTIONS = 4;
+}
+
 class Games{
     const LEAGUE_OF_LEGENDS = 1;
     const RAINBOW_SIX = 2;
@@ -23,9 +28,4 @@ class Difficulty{
         'difficile' => self::HARD
     ];
 
-}
-
-class Constants{
-
-    const NB_QUESTIONS = 4;
 }
