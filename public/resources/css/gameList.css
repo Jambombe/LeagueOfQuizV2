@@ -62,7 +62,7 @@ div.game-card h3 {
 }
 
 
-div.game-card-img-overlay a{
+div.game-card-img-overlay button{
     display: block;
     padding: 10px 20px;
     margin: 15px auto;
@@ -74,30 +74,30 @@ div.game-card-img-overlay a{
     transition: all 0.2s;
 }
 
-div.game-card-img-overlay a.easy{
+div.game-card-img-overlay button.easy{
     border-color: #21ba45;
     color: #21ba45;
 }
-div.game-card-img-overlay a.medium{
+div.game-card-img-overlay button.medium{
     border-color: #f2711c;
     color: #f2711c;
 }
-div.game-card-img-overlay a.hard{
+div.game-card-img-overlay button.hard{
     border-color: #db2828;
     color: #db2828;
 }
 
-div.game-card-img-overlay a.easy:hover{
+div.game-card-img-overlay button.easy:hover{
     /*background-color: #21ba45;*/
     background-color: rgba(33,186,69,0.8);
     color: #fff;
 }
-div.game-card-img-overlay a.medium:hover{
+div.game-card-img-overlay button.medium:hover{
     /*background-color: #f2711c;*/
     background-color: rgba(242,113,28,0.8);
     color: #fff;
 }
-div.game-card-img-overlay a.hard:hover{
+div.game-card-img-overlay button.hard:hover{
     /*background-color: #db2828;*/
     background-color: rgba(219,40,40,0.8);
     color: #fff;

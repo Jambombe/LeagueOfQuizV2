@@ -13,9 +13,12 @@
                 <div class="game-card-img">
                     <img src="{{ game.image }}">
                     <div class="game-card-img-overlay">
-                        <a href="{{ path('play') }}/{{ game.name }}/facile" class="easy">Facile</a>
-                        <a href="{{ path('play') }}/{{ game.name }}/moyen" class="medium">Moyen</a>
-                        <a href="{{ path('play') }}/{{ game.name }}/difficile" class="hard">Difficile</a>
+                        {#<a href="{{ path('play') }}/{{ game.name }}/facile" class="easy">Facile</a>#}
+                        {#<a href="{{ path('play') }}/{{ game.name }}/moyen" class="medium">Moyen</a>#}
+                        {#<a href="{{ path('play') }}/{{ game.name }}/difficile" class="hard">Difficile</a>#}
+                        <button onclick="startQuiz('{{ path("play") }}/{{ game.name }}/facile', '{{ game.displayName }}', 'Facile')" class="easy">Facile</button>
+                        <button onclick="startQuiz('{{ path("play") }}/{{ game.name }}/moyen', '{{ game.displayName }}', 'Moyen')" class="medium">Moyen</button>
+                        <button onclick="startQuiz('{{ path("play") }}/{{ game.name }}/difficile', '{{ game.displayName }}', 'Difficile')" class="hard">Difficile</button>
                     </div>
                 </div>
                 {#<hr>#}
@@ -25,7 +28,28 @@
         {% endfor %}
     </div>
 
+
 {% endblock %}
+
+    {% block javascripts %}
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <script>
+            function startQuiz(url, gameName, difficulty)
+            {
+                swal({
+                    title: "Commencer le quiz ?",
+                    text: gameName + " - " + difficulty,
+                    buttons: ['Non, je suis nul', "C'est parti !"],
+                })
+                .then((go) =>{
+                    if (go)
+                    {
+                        document.location.href = url;
+                    }
+                });
+            }
+        </script>
+    {% endblock %}
 
 {% block stylesheets %}
     <link rel="stylesheet" href="{{ asset('resources/css/gameList.css') }}">
